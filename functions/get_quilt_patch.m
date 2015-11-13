@@ -12,12 +12,12 @@ function [ out_im ] = get_quilt_patch(patch, Im, norm_func, diff_func, patch_siz
         out_im = Im(r_take:r_take+patch_size(1)-1, c_take:c_take+patch_size(2)-1, :);
     elseif (i1 == 1)
         % We're in the top row, consider only the left overlap
-        out_im = quilt_left_overlap(left_overlap, Im, patch_size, 100);
+        out_im = quilt_left_overlap(left_overlap, Im, patch_size, 200);
     elseif (j1 == 1)
         % We're in the left column, consider only the top overlap
-        out_im = quilt_top_overlap(top_overlap, Im, patch_size, 100);
+        out_im = quilt_top_overlap(top_overlap, Im, patch_size, 200);
     else
         % In the interior, consider the L-overlap
-        out_im = quilt_L_overlap(top_overlap, left_overlap, Im, patch_size, 100);
+        out_im = quilt_L_overlap(top_overlap, left_overlap, Im, patch_size, 200);
     end
 end
