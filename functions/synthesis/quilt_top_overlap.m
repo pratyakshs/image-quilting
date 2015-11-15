@@ -13,9 +13,12 @@ function [ best_patch ] = quilt_top_overlap(overlap, Im, patch_size, iters, targ
         sum = 0;
         for j = 1:patch_size(1)
             for k = 1:patch_size(2)
-                temp = (norm(target(j, k, :)) - norm(patch(j,k,:)))^{2};
+                v1 = norm(reshape(single(target(j, k, :)), [3 1]));
+                v2 = norm(reshape(single(patch(j, k, :)), [3 1]));
+                temp = (v1 - v2)^2;
                 if mode == 1
-                    temp = temp * beta + (1 - beta) * (norm(send_t(j, k, :)) - norm(patch(j,k,:)))^{2};
+                    v3 = norm(reshape(single(send_t(j, k, :)), [3 1]));
+                    temp = temp * beta + (1 - beta) * (v3 - v2)^2;
                 end
                 sum = sum + temp;
             end
