@@ -2,6 +2,7 @@ function [ out_im ] = get_quilt_patch(patch, target, alpha, beta, Im, patch_size
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
     [r, c, ~] = size(Im);
+    %overlap_size
     top_overlap = patch(1:overlap_size(1), :, :);
     left_overlap = patch(:, 1:overlap_size(2), :);
     

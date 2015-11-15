@@ -12,7 +12,10 @@ function [ out_im ] = loop_over_items(Im_inp, Im_target, alpha, beta, patch_size
             else
                 send_t = ex_tex(i:r_i, j:c_j, :);
             end
-            patch = get_quilt_patch(out_im(i:r_i, j:c_j, :), Im_target(i:r_i, j:c_j, :), alpha, beta, Im_inp, my_patch_size, overlap_size, i, j, send_t, mode);
+            o_1 = min(r_i - i + 1, overlap_size(1));
+            o_2 = min(c_j - j + 1, overlap_size(2));
+            %size(out_im(i:r_i, j:c_j, :))
+            patch = get_quilt_patch(out_im(i:r_i, j:c_j, :), Im_target(i:r_i, j:c_j, :), alpha, beta, Im_inp, my_patch_size, [o_1 o_2], i, j, send_t, mode);
 %           size(patch)
 %           size(out_im(i:r_i, j:c_j, :))
 %           [i, r_i, j, c_j]
