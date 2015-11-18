@@ -40,6 +40,8 @@ function [ best_patch ] = quilt_L_overlap(overlap_top, overlap_left, Im, patch_s
             best_patch = patch;
         end
     end
-    best_patch = left_overlap_cut(best_patch, overlap_left);
-    best_patch = top_overlap_cut(best_patch, overlap_top);
+    target_top = target(1:overlap_top_size(1), :, : );
+    target_left = target(:, 1:overlap_left_size(2), :);
+    best_patch = left_overlap_cut(best_patch, overlap_left, alpha, target_left);
+    best_patch = top_overlap_cut(best_patch, overlap_top, alpha, target_top);
 end

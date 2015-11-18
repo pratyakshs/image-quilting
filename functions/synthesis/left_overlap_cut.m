@@ -1,32 +1,35 @@
-function [ out_patch ] = left_overlap_cut(patch, overlap)
+function [ out_patch ] = left_overlap_cut(patch, overlap, alpha, target)
 %UNTITLED Summary of this function goes here
 
     [r, c, ~] = size(overlap);
     e = (single(patch(:, 1:c, :)) - single(overlap)).^2;
+    e = sum(e, 3);
+    e = e.^0.5;
+    e = alpha * e + (1 - alpha) * abs(mean(patch(:, 1:c, :), 3) - mean(target, 3));
     E = zeros([r c]);
     pred = zeros([r c]);
     
     % Populate first row
     for j=1:c
-        E(1, j) = norm(reshape(e(1, j, :), [3 1]));
+        E(1, j) = e(1,j); %norm(reshape(e(1, j, :), [3 1]));
         pred(1, j) = j;
     end
     
     for i=2:r
         % first column
         [a, b] = min([E(i-1, 1) E(i-1, 2)], [], 2);
-        E(i, 1) = norm(reshape(e(i, 1, :), [3 1])) + a;
+        E(i, 1) = e(i, 1) + a;%norm(reshape(e(i, 1, :), [3 1])) + a;
         pred(i, 1) = b;
         
         for j=2:c-1
             [a, b] = min([E(i-1, j-1) E(i-1, j) E(i-1, j+1)], [], 2);
-            E(i, j) = norm(reshape(e(i, j, :), [3 1])) + a;
+            E(i, j) = e(i, j) + a; %norm(reshape(e(i, j, :), [3 1])) + a;
             pred(i, j) = j-2 + b;
         end
 
         % last column
         [a, b] = min([E(i-1, c-1) E(i-1, c)], [], 2);
-        E(i, c) = norm(reshape(e(i, c, :), [3 1])) + a;
+        E(i, c) = e(i, c) + a; %norm(reshape(e(i, c, :), [3 1])) + a;
         pred(i, c) = c-2 + b;
     end
 

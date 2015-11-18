@@ -38,5 +38,6 @@ function [ best_patch ] = quilt_top_overlap(overlap, Im, patch_size, iters, targ
             best_patch = patch;
         end
     end
-    best_patch = top_overlap_cut(best_patch, overlap); 
+    target_top = target(1:overlap_size(1), :, : );
+    best_patch = top_overlap_cut(best_patch, overlap, alpha, target_top); 
 end

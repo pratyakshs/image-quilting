@@ -13,8 +13,8 @@ function [ best_patch ] = quilt_left_overlap(overlap, Im, patch_size, iters, tar
         %sum = 0;
         error_sum = norm(overlap_error(:))^2;
         if ~(mode == 0)
-            v1 = single(pt(:,overlap_size(1)+1:end,:));
-            v1 = v1 - single(patch(:,overlap_size(1)+1:end,:));
+            v1 = single(pt(:,overlap_size(2)+1:end,:));
+            v1 = v1 - single(patch(:,overlap_size(2)+1:end,:));
             error_sum = error_sum + norm(v1(:))^2;
         end 
         V1 = mean(single(target), 3);
@@ -38,5 +38,6 @@ function [ best_patch ] = quilt_left_overlap(overlap, Im, patch_size, iters, tar
             best_patch = patch;
         end
     end
-    best_patch = left_overlap_cut(best_patch, overlap);
+    target_left = target(:, 1:overlap_size(2), :);
+    best_patch = left_overlap_cut(best_patch, overlap, alpha, target_left);
 end
