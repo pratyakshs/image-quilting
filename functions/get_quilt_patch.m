@@ -5,7 +5,9 @@ function [ out_im ] = get_quilt_patch(patch, Im, patch_size, overlap_size, i1, j
     top_overlap = patch(1:overlap_size(1), :, :);
     left_overlap = patch(:, 1:overlap_size(2), :);
     
-    if ((i1 == 1) && (j1 == 1))
+    if (overlap_size(1) <= 3 || overlap_size(2) <= 3)
+        out_im = patch;
+    esleif ((i1 == 1) && (j1 == 1))
         % Pick the first patch randomly
         r_take = randi([1, r - patch_size(1)], 1, 1);
         c_take = randi([1, c - patch_size(2)], 1, 1);
