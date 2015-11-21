@@ -1,8 +1,0 @@
-\contentsline {chapter}{\numberline {1}Introduction}{2}
-\contentsline {section}{\numberline {1.1}Problem Statement}{2}
-\contentsline {section}{\numberline {1.2}Abstract of the Paper Implemented}{2}
-\contentsline {chapter}{\numberline {2}The Algorithm}{3}
-\contentsline {chapter}{\numberline {3}Dataset Description}{4}
-\contentsline {chapter}{\numberline {4}Our Implementation}{5}
-\contentsline {chapter}{\numberline {5}Results}{6}
-\contentsline {chapter}{\numberline {6}Conclusion}{7}

@@ -6,6 +6,8 @@ function [ best_patch ] = quilt_L_overlap(overlap_top, overlap_left, Im, patch_s
     overlap_top_size = size(overlap_top);
     overlap_left_size = size(overlap_left);
     [r, c, ~] = size(Im);
+    V1 = mean(single(target), 3);
+    
     for i=1:iters
         r_take = randi([1, r - patch_size(1) + 1], 1, 1);
         c_take = randi([1, c - patch_size(2) + 1], 1, 1);
@@ -19,7 +21,7 @@ function [ best_patch ] = quilt_L_overlap(overlap_top, overlap_left, Im, patch_s
             error_sum = error_sum + norm(v1(:))^2;
         end
         %sum = 0;
-        V1 = mean(single(target), 3);
+        
         V2 = mean(single(patch), 3);
         corr_err = sum(sum((V1 - V2).^2));
         %for j = 1:patch_size(1)
