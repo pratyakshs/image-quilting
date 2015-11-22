@@ -1,0 +1,23 @@
+Quilting
+--------
+
+Call the function `loop_over_items` with parameters:
+	* Input image (3D array for RGB)
+	* Max size of patches to be considered (eg. [512 512])
+	* Max left and top overlaps between patches (eg. [64 64])
+	* Output image size (eg. [2048 2048])
+
+
+
+Texture transfer
+----------------
+
+Call the function `synthesize` with parameters:
+	* Input image texture (3D array for RGB)
+	* Input target image (3D array for RGB)
+	* A list of alpha parameters (eg. [0.1 0.5 0.9], usually in increasing order
+	  and between 0 and 1)
+	* Max size of patches to be considered (eg. [512 512])
+	* Max left and top overlaps between patches (eg. [64 64])
+	* Factor used to reduce size of image in each iteration (eg. 3)
+	* Number of iterations (eg. 3)
