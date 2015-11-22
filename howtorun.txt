@@ -21,3 +21,4 @@ Call the function `synthesize` with parameters:
 	* Max left and top overlaps between patches (eg. [64 64])
 	* Factor used to reduce size of image in each iteration (eg. 3)
 	* Number of iterations (eg. 3)
+
